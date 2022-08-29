@@ -17,7 +17,13 @@ defmodule EcommerceWeb.Router do
   scope "/", EcommerceWeb do
     pipe_through :browser
 
+    # Home Page
     live "/", Live.Home, :index
+
+    # User Page
+    live "/signup", Live.User, :signup
+    live "/signin", Live.User, :signin
+
   end
 
   # Other scopes may use custom stacks.
