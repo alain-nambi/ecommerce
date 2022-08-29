@@ -17,7 +17,7 @@ defmodule EcommerceWeb.Router do
   scope "/", EcommerceWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", Live.Home, :index
   end
 
   # Other scopes may use custom stacks.
