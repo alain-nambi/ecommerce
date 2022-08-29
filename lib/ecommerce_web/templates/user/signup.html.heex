@@ -3,15 +3,15 @@
         <!--
         <img 
             class="mx-auto h-12 w-auto" 
-            src="https://tailwindui.com/img/logos/workflow-mark-teal-600.svg"
+            src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg"
             alt="Workflow" />
         -->
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create your account</h2>
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create new account</h2>
         <p class="mt-2 text-center text-sm text-gray-600 max-w">
-            Already registered?
+            Already registered ?
             <%= live_redirect "Sign in", 
                 to: Routes.user_path(@socket, :signin),
-                class: "font-medium text-teal-600 hover:text-teal-500 focus:outline-none focus:ring-2 focus:ring-teal-500"
+                class: "font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
             %>
         </p>
     </div>
@@ -89,17 +89,17 @@
                 -->
 
                 <div class="flex items-center">
-                    <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="text-teal-600 focus:ring-teal-500" />
+                    <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="text-blue-600 focus:ring-blue-500" />
                     <label for="terms-and-privacy" class="ml-2 block text-sm text-gray-900">I agree to the
-                        <a href="#" class="text-teal-600 hover:text-teal-500">Terms</a>
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Terms</a>
                         and
-                        <a href="#" class="text-teal-600 hover:text-teal-500">Privacy Policy</a>.
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>.
                     </label>
                 </div>
 
                 <div>
                     <button type="submit"
-                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-teal-600 hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">Sign
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign
                         in</button>
                 </div>
             </form>
