@@ -4,6 +4,9 @@ defmodule Ecommerce.Accounts do
   """
 
   import Ecto.Query, warn: false
+
+  require Logger
+
   alias Ecommerce.Repo
 
   alias Ecommerce.Accounts.User
@@ -50,9 +53,33 @@ defmodule Ecommerce.Accounts do
 
   """
   def create_user(attrs \\ %{}) do
+    process_attrs = field_process(attrs)
+
     %User{}
-    |> User.changeset(attrs)
+    |> User.changeset(process_attrs)
     |> Repo.insert()
+  end
+
+  def field_process(attrs) do
+    # Transform the attributes of the family name into capital letters
+    lastname =
+      attrs[:lastname]
+      |> String.upcase()
+
+    # Transform the attributes of the first name into capital letters
+    firstname =
+      attrs[:firstname]
+      |> String.split()
+      |> Enum.map(&(String.capitalize/1))
+      |> Enum.join(" ")
+
+
+    # Replace the field [firstname, lastname] in attributs by a new field.
+    new_attrs =
+      Map.replace(attrs, :lastname, lastname)
+      |> Map.replace!(:firstname, firstname)
+
+    Map.merge(attrs, new_attrs)
   end
 
   @doc """
