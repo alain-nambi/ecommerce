@@ -4,11 +4,11 @@ defmodule Ecommerce.Accounts.User do
 
   schema "users" do
     field :firstname, :string
-    field :is_valid, :boolean, default: false
     field :lastname, :string
     field :mail, :string
     field :password, :string
     field :phone, :string
+    field :is_valid, :boolean, default: false
 
     timestamps()
   end
@@ -17,6 +17,6 @@ defmodule Ecommerce.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:lastname, :firstname, :mail, :password, :phone, :is_valid])
-    |> validate_required([:lastname, :firstname, :mail, :password, :phone, :is_valid])
+    |> validate_required([:lastname, :firstname, :mail, :password, :phone])
   end
 end
