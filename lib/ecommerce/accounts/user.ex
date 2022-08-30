@@ -18,5 +18,6 @@ defmodule Ecommerce.Accounts.User do
     user
     |> cast(attrs, [:lastname, :firstname, :mail, :password, :phone, :is_valid])
     |> validate_required([:lastname, :firstname, :mail, :password, :phone])
+    |> unique_constraint(:mail)
   end
 end
