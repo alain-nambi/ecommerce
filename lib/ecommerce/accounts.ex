@@ -60,7 +60,7 @@ defmodule Ecommerce.Accounts do
     |> Repo.insert()
   end
 
-  def field_process(attrs) do
+  defp field_process(attrs) do
     # Transform the attributes of the family name into capital letters
     lastname =
       attrs[:lastname]
@@ -95,8 +95,10 @@ defmodule Ecommerce.Accounts do
 
   """
   def update_user(%User{} = user, attrs) do
+    process_attrs = field_process(attrs)
+
     user
-    |> User.changeset(attrs)
+    |> User.changeset(process_attrs)
     |> Repo.update()
   end
 
