@@ -130,4 +130,8 @@ defmodule Ecommerce.Accounts do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
+
+  def signup_user(%User{} = user, attrs \\ %{}) do
+    User.signup_changeset(user, attrs)
+  end
 end
