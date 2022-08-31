@@ -1,0 +1,117 @@
+<div id={@id} class="fixed w-full h-full overflow-auto">
+    <div class="min-h-screen flex bg-black bg-opacity-50 flex-col justify-center py-12 px-6 lg:px-8">
+        <div class="mt-8 sm:mx-auto sm:w-full md:max-w-xl">
+            <div class="bg-white py-8 px-6 rounded-lg sm:px-10 shadow-2xl">
+                <.form 
+                    let={f} 
+                    for={@changeset} 
+                    phx-change="validate-registration" 
+                    phx-submit="save" 
+                    phx-click-away="close-modal-signup"
+                    class="mb-0 space-y-6"
+                >
+                    <div>
+                        <div> 
+                            <div class="flex justify-between items-center mb-3">
+                                <h2 class="text-xl font-semibold text-gray-900">S'inscrire</h2>
+    
+                                <svg
+                                    width="28"
+                                    height="28"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="text-blue-600 hover:text-blue-500 cursor-pointer"
+                                    phx-click="close-modal-signup"
+                                >
+                                <path
+                                    d="M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z"
+                                    fill="currentColor"
+                                />
+                                </svg>
+                            </div>  
+                      
+    
+                            <div class="md:flex gap-4">
+                                <div class="mt-1 w-full">
+                                    <%= text_input f, :firstname, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Prénom" %>
+                                    <%= error_tag f, :firstname %>
+                                </div>  
+    
+                                <div class="mt-1 w-full">
+                                    <%= text_input f, :lastname, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Nom de famille" %>
+                                    <%= error_tag f, :lastname %>
+                                </div>
+                            </div>
+    
+                            <div class="mt-1">
+                                <%= email_input f, :mail, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Email" %>
+                                <%= error_tag f, :mail %>
+                            </div>
+    
+                            <div class="mt-1">
+                                <%= password_input f, :password, class: "mb-3 w-full border-gray-300 rounded-lg", value: @password_value, required: "true", placeholder: "Nouveau mot de passe" %>
+                                <%= error_tag f, :password %>
+                            </div>
+    
+                            <div class="mt-1">
+                                <%= telephone_input f, :phone, class: "mb-3 w-full border-gray-300 rounded-lg", required: "true", placeholder: "Téléphone" %>
+                                <%= error_tag f, :phone %>
+                            </div>
+    
+                            <div class="flex items-center mb-4 mt-1">
+                                <input 
+                                    id="terms-and-privacy-signup" 
+                                    name="terms-and-privacy" 
+                                    type="checkbox" 
+                                    class="text-blue-600 focus:ring-blue-500" 
+                                />
+                                <label 
+                                    for="terms-and-privacy" 
+                                    class="ml-2 block text-sm text-gray-900"
+                                >
+                                    J'accepte les 
+                                    <a href="#" class="text-blue-600 hover:text-blue-500">conditions</a>
+                                    et la
+                                    <a href="#" class="text-blue-600 hover:text-blue-500">politique de confidentialité</a>.
+                                </label>
+                            </div>
+    
+                            <div class="flex gap-3">
+                                <button
+                                    id="buttonClear"
+                                    type="button"
+                                    phx-click="reset-changeset"
+                                    class="w-full py-2 px-4 border border-blue-600 hover:border-slate-500 rounded-md shadow-sm text-sm font-medium text-blue-600 hover:text-slate-500 bg-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                >
+                                    Annuler
+                                </button>
+    
+                                <button 
+                                    type="submit"
+                                    class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                >
+                                    S'inscrire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!--
+                    <div>
+                        <label for="company-size" class="block text-sm font-medium text-gray-700">Company size</label>
+                        <div class="mt-1">
+                            <select name="company-size" id="company-size" class="w-full border-gray-300 rounded-lg">
+                                <option value="">Please select</option>
+                                <option value="small">1 to 10 employees</option>
+                                <option value="medium">11 to 50 employees</option>
+                                <option value="large">50+ employees</option>
+                            </select>
+                        </div>
+                    </div>
+                    -->
+                </.form>
+            </div>
+        </div>
+    </div>
+</div>
