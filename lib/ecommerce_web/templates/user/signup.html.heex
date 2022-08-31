@@ -1,0 +1,108 @@
+<div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <!--
+        <img 
+            class="mx-auto h-12 w-auto" 
+            src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg"
+            alt="Workflow" />
+        -->
+        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Create new account</h2>
+        <p class="mt-2 text-center text-sm text-gray-600 max-w">
+            Already registered ?
+            <%= live_redirect "Sign in", 
+                to: Routes.user_path(@socket, :signin),
+                class: "font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            %>
+        </p>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <form class="mb-0 space-y-6" action="#" method="POST">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <div class="mt-1">
+                        <input 
+                            type="text"
+                            name="username" 
+                            id="username" 
+                            class="w-full border-gray-300 rounded-lg shadow-sm"
+                        />
+                    </div>
+                </div>
+
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <div class="mt-1">
+                        <input 
+                            id="email" 
+                            name="email" 
+                            type="email" 
+                            autocomplete="off" 
+                            required
+                            class="w-full border-gray-300 rounded-lg shadow-sm"
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="mt-1">
+                        <input 
+                            id="password" 
+                            name="password" 
+                            type="password" 
+                            autocomplete="off" 
+                            required
+                            class="w-full border-gray-300 rounded-lg" 
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="repeat-password" class="block text-sm font-medium text-gray-700">Repeat password</label>
+                    <div class="mt-1">
+                        <input 
+                            id="repeatPassword" 
+                            name="repeat-password" 
+                            type="password" 
+                            autocomplete="off" 
+                            required
+                            class="w-full border-gray-300 rounded-lg" 
+                        />
+                    </div>
+                </div>
+
+                <!--
+                <div>
+                    <label for="company-size" class="block text-sm font-medium text-gray-700">Company size</label>
+                    <div class="mt-1">
+                        <select name="company-size" id="company-size" class="w-full border-gray-300 rounded-lg">
+                            <option value="">Please select</option>
+                            <option value="small">1 to 10 employees</option>
+                            <option value="medium">11 to 50 employees</option>
+                            <option value="large">50+ employees</option>
+                        </select>
+                    </div>
+                </div>
+                -->
+
+                <div class="flex items-center">
+                    <input id="terms-and-privacy" name="terms-and-privacy" type="checkbox" class="text-blue-600 focus:ring-blue-500" />
+                    <label for="terms-and-privacy" class="ml-2 block text-sm text-gray-900">I agree to the
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Terms</a>
+                        and
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>.
+                    </label>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Sign
+                        in</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
