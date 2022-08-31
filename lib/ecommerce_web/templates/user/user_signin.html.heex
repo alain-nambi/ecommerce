@@ -1,0 +1,110 @@
+<%= if @open_modal_signup do %>
+    <.live_component module={EcommerceWeb.Live.Component.User.UserSignup} id="userSignUp" changeset={@changeset} password_value={@password_value} />
+<% end %>
+
+<div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <!--
+        <img 
+            class="mx-auto h-12 w-auto" 
+            src="https://tailwindui.com/img/logos/workflow-mark-blue-600.svg"
+            alt="Workflow" />
+        -->
+        <h2 
+            class="mt-6 text-center text-3xl font-extrabold text-gray-900"
+        >
+            Signin to your account
+        </h2>
+        <div class="mt-2 text-center text-sm text-gray-600 max-w">
+            Don't have any account ?
+            <a
+                phx-click="open-modal-signup" 
+                class="font-medium text-blue-600 hover:text-blue-500 cursor-pointer"
+            >
+                S'inscrire
+            </a>
+        </div>
+    </div>
+
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+            <form 
+                class="mb-0 space-y-6" 
+                action="#" 
+                method="POST"
+            >
+                <div>
+                    <label 
+                        for="email" 
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        Email
+                    </label>
+                    <div class="mt-1">
+                        <input 
+                            id="email" 
+                            name="email" 
+                            type="email" 
+                            autocomplete="off" 
+                            required
+                            class="w-full border-gray-300 rounded-lg shadow-sm" 
+                        />
+                    </div>
+                </div>
+
+                <div>
+                    <label 
+                        for="password" 
+                        class="block text-sm font-medium text-gray-700"
+                    >
+                        Password
+                    </label>
+                    <div class="mt-1">
+                        <input 
+                            id="password" 
+                            name="password" 
+                            type="password" 
+                            autocomplete="off" 
+                            required
+                            class="w-full border-gray-300 rounded-lg" 
+                        />
+                    </div>
+                </div>
+
+                <p 
+                    class="text-center text-sm  cursor-pointer text-blue-600 hover:text-blue-500"
+                >
+                    Forgot password ? 
+                </p>
+
+                <div class="flex items-center">
+                    <input 
+                        id="terms-and-privacy-signin" 
+                        name="terms-and-privacy" 
+                        type="checkbox" 
+                        class="text-blue-600 focus:ring-blue-500" 
+                    />
+                    <label 
+                        for="terms-and-privacy" 
+                        class="ml-2 block text-sm text-gray-900"
+                    >
+                        I agree to the
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Terms</a>
+                        and
+                        <a href="#" class="text-blue-600 hover:text-blue-500">Privacy Policy</a>.
+                    </label>
+                </div>
+
+                <div>
+                    <button 
+                        type="submit"
+                        class="w-full flex justify-center py-2 px-4 cursor-pointer border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    >
+                        Log in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
