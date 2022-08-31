@@ -1,4 +1,4 @@
-defmodule EcommerceWeb.LiveComponent.User.UserSignup do
+defmodule EcommerceWeb.Live.Component.User.UserSignup do
   use Phoenix.LiveComponent
 
   alias EcommerceWeb.UserView
