@@ -1,16 +1,17 @@
 /* ====== MODALS ======= */
-#userSignUp[open="true"] {
+#userSignUp[open="true"],
+#forgotPasswordModal[open="true"] {
     opacity: 1;
     pointer-events: auto;
     animation: open 0.4s;
 }
 
-#userSignUp[open="false"] {
+#userSignUp[open="false"],
+#forgotPasswordModal[open="false"]  {
     opacity: 0;
     pointer-events: none;
     animation: close 0.4s;
 }
-
 
 @keyframes open {
     from {

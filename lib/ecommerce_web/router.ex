@@ -23,6 +23,7 @@ defmodule EcommerceWeb.Router do
     # User Page
     live "/signup", Live.User, :signup
     live "/signin", Live.User, :signin
+    live "/forgot-password", Live.User, :forgot_password
 
   end
 
