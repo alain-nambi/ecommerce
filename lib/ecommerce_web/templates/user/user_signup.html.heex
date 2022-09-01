@@ -1,12 +1,12 @@
-<div id={@id} class="fixed w-full h-full overflow-auto backdrop-blur-sm">
+<div id={@id} class="fixed w-full h-full overflow-auto backdrop-blur-sm" open={"#{@open_modal_signup}"}>
     <div class="min-h-screen flex bg-black bg-opacity-50 flex-col justify-center py-12 px-6 lg:px-8">
         <div class="mt-8 sm:mx-auto sm:w-full md:max-w-xl">
             <div id="modal" class="bg-white py-8 px-6 rounded-lg sm:px-10 shadow-2xl">
                 <.form 
                     let={f} 
                     for={@changeset} 
+                    phx-change="validate-registration"
                     phx-submit="save" 
-                    phx-click-away="close-modal-signup"
                     class="mb-0 space-y-6"
                 >
                     <div>
@@ -32,28 +32,28 @@
 
                         <div class="md:flex gap-4">
                             <div class="mt-1 w-full">
-                                <%= text_input f, :firstname, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Prénom" %>
+                                <%= text_input f, :firstname, id: "signupUsername", class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Prénom" %>
                                 <%= error_tag f, :firstname %>
                             </div>  
 
                             <div class="mt-1 w-full">
-                                <%= text_input f, :lastname, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Nom de famille" %>
+                                <%= text_input f, :lastname, id: "signupLastname", class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Nom de famille" %>
                                 <%= error_tag f, :lastname %>
                             </div>
                         </div>
 
                         <div class="mt-1">
-                            <%= email_input f, :mail, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Email" %>
+                            <%= email_input f, :mail, id: "signupMail", class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Email" %>
                             <%= error_tag f, :mail %>
                         </div>
 
                         <div class="mt-1">
-                            <%= password_input f, :password, class: "mb-3 w-full border-gray-300 rounded-lg", value: @password_value, required: "true", placeholder: "Nouveau mot de passe" %>
+                            <%= password_input f, :password, id: "signupPassword", class: "mb-3 w-full border-gray-300 rounded-lg", value: @password_value, required: "true", placeholder: "Nouveau mot de passe" %>
                             <%= error_tag f, :password %>
                         </div>
 
                         <div class="mt-1">
-                            <%= telephone_input f, :phone, class: "mb-3 w-full border-gray-300 rounded-lg", required: "true", placeholder: "Téléphone" %>
+                            <%= telephone_input f, :phone, id: "signupPhone", class: "mb-3 w-full border-gray-300 rounded-lg", required: "true", placeholder: "Téléphone" %>
                             <%= error_tag f, :phone %>
                         </div>
 
