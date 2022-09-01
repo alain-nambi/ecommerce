@@ -1,17 +1,10 @@
-
-<div
-    id="modalSignUp"
-    class={"#{if @open_modal_signup, do: "visible opacity-100 pointer-events-auto", else: "invisible opacity-0 pointer-events-none"}" }
->
-    <.live_component 
-        module={EcommerceWeb.Live.Component.User.UserSignup} 
-        id="userSignUp" 
-        changeset={@changeset} 
-        password_value={@password_value}
-        open_modal_signup={"#{@open_modal_signup}"}
-    />
-</div>
-
+<.live_component 
+    module={EcommerceWeb.Live.Component.User.Signup} 
+    id="userSignUp" 
+    changeset={@changeset} 
+    password_value={@password_value}
+    open_modal_signup={@open_modal_signup}
+/>
 
 <div class="min-h-screen bg-gray-100 flex flex-col justify-center py-12 px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -24,7 +17,7 @@
         <h2 
             class="mt-6 text-center text-3xl font-extrabold text-gray-900"
         >
-            Signin to your account
+            Se connecter
         </h2>
         <div class="mt-2 text-center text-sm text-gray-600 max-w">
             Pas encore inscrit ?
@@ -43,17 +36,17 @@
             <.form 
                 let={f} 
                 for={@changeset} 
+                phx-change="validate-registration"
                 phx-submit="save" 
-                phx-click-away="close-modal-signup"
                 class="mb-0"
             >
                 <div class="mt-1">
-                    <%= text_input f, :mail, class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Email" %>
+                    <%= text_input f, :mail, id: "signinUsername", class: "mb-3 w-full border-gray-300 rounded-lg shadow-sm", required: "true", placeholder: "Email" %>
                     <%= error_tag f, :mail %>
                 </div>
 
                 <div class="mt-1">
-                    <%= password_input f, :password, class: "mb-3 w-full border-gray-300 rounded-lg", value: @password_value, required: "true", placeholder: "Nouveau mot de passe" %>
+                    <%= password_input f, :password, id: "signinPassword", class: "mb-3 w-full border-gray-300 rounded-lg", value: @password_value, required: "true", placeholder: "Nouveau mot de passe" %>
                     <%= error_tag f, :password %>
                 </div>
 
