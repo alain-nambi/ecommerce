@@ -14,6 +14,7 @@ defmodule EcommerceWeb.Live.User do
       |> assign(changeset: Accounts.signup_user(%User{}))
       |> assign(password_value: "")
       |> assign(open_modal_signup: false)
+      |> assign(open_modal_forgot_password: false)
 
     {:ok, socket}
   end
@@ -27,11 +28,19 @@ defmodule EcommerceWeb.Live.User do
         {:noreply,
           socket
           |> assign(open_modal_signup: true)
+          |> assign(open_modal_forgot_password: false)
+        }
+      :forgot_password ->
+        {:noreply,
+          socket
+          |> assign(open_modal_signup: false)
+          |> assign(open_modal_forgot_password: true)
         }
       _ ->
         {:noreply,
           socket
           |> assign(open_modal_signup: false)
+          |> assign(open_modal_forgot_password: false)
         }
     end
   end
@@ -78,6 +87,24 @@ defmodule EcommerceWeb.Live.User do
     {:noreply,
       socket
       |> assign(open_modal_signup: false)
+      |> push_patch(to: Routes.user_path(socket, :signin))
+    }
+  end
+
+  # Open modal Forgot Password
+  def handle_event("open-modal-forgot-password", _params, socket) do
+    {:noreply,
+      socket
+      |> assign(open_modal_forgot_password: true)
+      |> push_patch(to: Routes.user_path(socket, :forgot_password))
+    }
+  end
+
+  # Close modal Forgot Password
+  def handle_event("close-modal-forgot-password", _params, socket) do
+    {:noreply,
+      socket
+      |> assign(open_modal_forgot_password: false)
       |> push_patch(to: Routes.user_path(socket, :signin))
     }
   end
