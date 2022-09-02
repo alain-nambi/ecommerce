@@ -11,7 +11,8 @@ defmodule EcommerceWeb.Live.User do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> assign(changeset: Accounts.signup_user(%User{}))
+      |> assign(changeset: Accounts.change_user(%User{}))
+      |> assign(signup_changeset: Accounts.signup_user(%User{}))
       |> assign(password_value: "")
       |> assign(open_modal_signup: false)
       |> assign(open_modal_forgot_password: false)
@@ -47,27 +48,38 @@ defmodule EcommerceWeb.Live.User do
 
   # Validate registration forms
   def handle_event("validate-registration", %{"user" => params}, socket) do
-    changeset =
+    signup_changeset =
       %User{}
       |> Accounts.signup_user(params)
       |> Map.put(:action, :validate)
 
     password_value =
       cond do
-        is_nil(Map.get(changeset.changes, :password)) or changeset.changes == %{}  -> ""
-        true -> changeset.changes.password
+        is_nil(Map.get(signup_changeset.changes, :password)) or signup_changeset.changes == %{}  -> ""
+        true -> signup_changeset.changes.password
       end
 
     {:noreply,
       socket
-      |> assign(changeset: changeset)
+      |> assign(signup_changeset: signup_changeset)
       |> assign(password_value: password_value)
     }
   end
 
-  # Save users
-  def handle_event("save", _params, socket) do
-    {:noreply, socket}
+  # Save registration users
+  def handle_event("save-registration", %{"user" => params}, socket) do
+    case Accounts.create_user(params) do
+      {:ok, _user} ->
+        {:noreply,
+          socket
+          |> assign(signup_changeset: Accounts.signup_user(%User{}))
+          |> assign(password_value: "")
+          |> assign(open_modal_signup: false)
+        }
+
+      {:error, signup_changeset}->
+        {:noreply, socket |> assign(signup_changeset: signup_changeset)}
+    end
   end
 
   #==> push_patch: update socket without destroying it
@@ -87,6 +99,8 @@ defmodule EcommerceWeb.Live.User do
     {:noreply,
       socket
       |> assign(open_modal_signup: false)
+      |> assign(signup_changeset: Accounts.signup_user(%User{}))
+      |> assign(password_value: "")
       |> push_patch(to: Routes.user_path(socket, :signin))
     }
   end
