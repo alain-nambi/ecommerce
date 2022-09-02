@@ -32,3 +32,5 @@ ecommerce-*.tar
 npm-debug.log
 /assets/node_modules/
 
+assets/cypress/examples
+
