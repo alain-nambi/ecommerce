@@ -56,19 +56,17 @@ defmodule Ecommerce.Accounts do
     process_attrs = field_process(attrs)
 
     %User{}
-    |> User.changeset(process_attrs)
+    |> User.signup_changeset(process_attrs)
     |> Repo.insert()
   end
 
   defp field_process(attrs) do
     # Transform the attributes of the family name into capital letters
-    lastname =
-      attrs[:lastname]
-      |> String.upcase()
+    lastname = String.upcase(attrs["lastname"])
 
     # Transform the attributes of the first name into capital letters
     firstname =
-      attrs[:firstname]
+      attrs["firstname"]
       |> String.split()
       |> Enum.map(&(String.capitalize/1))
       |> Enum.join(" ")
@@ -76,8 +74,8 @@ defmodule Ecommerce.Accounts do
 
     # Replace the field [firstname, lastname] in attributs by a new field.
     new_attrs =
-      Map.replace(attrs, :lastname, lastname)
-      |> Map.replace!(:firstname, firstname)
+      Map.replace(attrs, "lastname", lastname)
+      |> Map.replace!("firstname", firstname)
 
     Map.merge(attrs, new_attrs)
   end
